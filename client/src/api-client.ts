@@ -8,7 +8,7 @@ export const register = async (formData: RegisterFormData) => {
     method: "POST",
     credentials: "include",
     headers: {
-      "content-type": "application/json", 
+      "content-type": "application/json",
     },
     body: JSON.stringify(formData),
   });
@@ -49,11 +49,24 @@ export const validateToken = async () => {
 export const signOut = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
     credentials: "include",
-    method: "POST"
+    method: "POST",
   });
-  
+
   if (!response.ok) {
     throw new Error("Error during sign out");
   }
   // return response.json();
+};
+
+export const addMyHotel = async (hotelFormData: FormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+    method: "POST",
+    credentials: "include",
+    body: hotelFormData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Faild to add Hotel");
+  }
+  return response.json(); 
 };
