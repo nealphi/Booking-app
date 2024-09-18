@@ -7,7 +7,7 @@ import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
 const MyHotels = () => {
   const { data: hotelData } = useQuery(
     "fetchMyHotels",
-    apiClient.fetchMyHotels,
+    () => apiClient.fetchMyHotels(),
     {
       onError: () => {},
     }
@@ -62,7 +62,7 @@ const MyHotels = () => {
                 to={`/edit-hotel/${hotel._id}`}
                 className="flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500"
               >
-                VieW Details
+                View Details
               </Link>
             </span>
           </div>
