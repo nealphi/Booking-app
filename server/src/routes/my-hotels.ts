@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import multer from "multer";
 import cloudinary from "cloudinary";
-import Hotel, { HotelType } from "../models/hotel";
+import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
+import { HotelType } from "../shared/types";
 
 const router = express.Router();
 
@@ -17,14 +18,21 @@ const upload = multer({
 
 router.post(
   "/",
-  verifyToken, [
+  verifyToken,
+  [
     body("name").notEmpty().withMessage("Name is required"),
     body("city").notEmpty().withMessage("City is required"),
     body("country").notEmpty().withMessage("Country is required"),
     body("description").notEmpty().withMessage("Description is required"),
     body("type").notEmpty().withMessage("Type is required"),
-    body("pricePerNight").notEmpty().isNumeric().withMessage("Price per night is required and must be a number"),
-    body("facilities").notEmpty().isArray().withMessage("Facilities are required"),
+    body("pricePerNight")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Price per night is required and must be a number"),
+    body("facilities")
+      .notEmpty()
+      .isArray()
+      .withMessage("Facilities are required"),
   ],
   upload.array("imageFiles", 6),
   async (req: Request, res: Response) => {
@@ -51,7 +59,6 @@ router.post(
 
       // 4.return a 201 status
       res.status(201).send(hotel);
-
     } catch (error) {
       console.log("Erros creatiZFng hotel:", error);
       res.status(500).json({ message: "Something wenr wrong" });
@@ -59,5 +66,15 @@ router.post(
   }
 );
 
+router.get("/", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find({
+      userId: req.userId,
+    });
+    res.json(hotels);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching hotels" });
+  }
+});
 
 export default router;
