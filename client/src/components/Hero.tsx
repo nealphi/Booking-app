@@ -1,13 +1,50 @@
+import { Flex, Text } from "@radix-ui/themes";
+import "@fontsource/playfair-display-sc";
+import "@fontsource-variable/quicksand";
 
 const Hero = () => {
   return (
-    <div className="bg-blue-800 pb-16">
-        <div className="container mx-auto flex flex-col gap-2">
-            <h1 className="text-5xl text-white font-bold">Find your next stay</h1>
-            <p className="text-2xl text-white">Search low prices on hotels for your dream vacation...</p>
-        </div>
-    </div>
-  )
-}
+    <Flex
+      className="text-center text-white"
+      px={{
+        initial: "2",
+        md: "5",
+      }}
+      py={"1.5rem"}
+      align={"center"}
+      justify={"center"}
+      style={{
+        backgroundImage: "url('./bg-hotel2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      minHeight= {{ initial: "40vh", sm: "65vh", lg:"75vh" }}
 
-export default Hero
+    >
+      <Flex direction={"column"} gap={"2"} align={"center"} justify={"center"}>
+        <Text
+          my={{ initial: "1", sm: "3"}}
+          size={{ initial: "8",  md: "9" }}
+          style={{ fontFamily: "Playfair Display SC" }}
+        >
+          "Your Stay, Your Escape"
+        </Text>
+        <Text
+          my={{ initial: "1", sm: "3"}}
+          mx={{ initial: "1", sm: "0"}}
+
+          size={{ initial: "3", sm: "5", md: "7" }}
+          style={{
+            fontFamily: "Quicksand Variable",
+            letterSpacing: 3
+          }}
+        >
+          Effortless Bookings for Every Journey
+        </Text>
+      </Flex>
+    </Flex>
+  );
+};
+
+export default Hero;

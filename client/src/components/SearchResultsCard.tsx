@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { HotelType } from "../../../server/src/shared/types";
+import { Link } from "@radix-ui/themes";
 
 type Props = {
   hotel: HotelType;
@@ -8,7 +8,7 @@ type Props = {
 
 const SearchResultsCard = ({ hotel }: Props) => {
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
+    <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-5 gap-8">
       <div className="w-full h-[300px]">
         <img
           src={hotel.imageUrls[0]}
@@ -26,8 +26,8 @@ const SearchResultsCard = ({ hotel }: Props) => {
             <span className="ml-1 text-sm">{hotel.type}</span>
           </div>
           <Link
-            to={`/detail/${hotel._id}`}
-            className="text-2xl font-bold cursor-pointer"
+            href={`/detail/${hotel._id}`}
+            weight={'bold'}
           >
             {hotel.name}
           </Link>
@@ -37,25 +37,24 @@ const SearchResultsCard = ({ hotel }: Props) => {
           <div className="line-clamp-4">{hotel.description}</div>
         </div>
 
-        <div className="grid grid-cols-2 items-end whitespace-nowrap">
-          <div className="flex gap-1 items-center">
+        <div className="grid sm:grid-cols-2 whitespace-nowrap gap-2">
+          <div className="flex gap-1 items-center ">
             {hotel.facilities.slice(0, 3).map((facility) => (
-              <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
+              <span className="border border-red-600 text-red-600 p-1 rounded-lg text-xs whitespace-nowrap">
                 {facility}
               </span>
             ))}
-            <span className="text-sm">
+            <span className="text-sm text-red-600">
               {hotel.facilities.length > 3 &&
                 `+${hotel.facilities.length - 3} more`}
             </span>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex sm:flex-col items-end gap-1">
             <span className="font-bold"> CAD${hotel.pricePerNight} per night</span>
             <Link
-              to={`/detail/${hotel._id}`}
-              className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit hover:bg-blue-500"
+              href={`/detail/${hotel._id}`} weight={'bold'}
             >
-              View More
+              View Details
             </Link>
           </div>
         </div>

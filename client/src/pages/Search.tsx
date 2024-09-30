@@ -8,6 +8,7 @@ import StarRatingFilter from "../components/StarRatingFilter";
 import HotelTypesFilter from "../components/HotelTypesFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
+import { Box, Flex, Select } from "@radix-ui/themes";
 
 const Search = () => {
   const search = useSearchContext();
@@ -29,7 +30,7 @@ const Search = () => {
     types: selectedHotelTypes,
     facilities: selectedFacilities,
     maxPrice: selectedPrice?.toString(),
-    sortOption
+    sortOption,
   };
   const { data: hotelData } = useQuery(["searchHotels", searchParams], () =>
     apiClient.searchHotels(searchParams)
@@ -68,9 +69,9 @@ const Search = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-      <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
-        <div className="space-y-5">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_4fr] m-5 gap-5">
+      <Box className="rounded-lg border border-slate-300 p-5 h-fit top-10" position={{lg: "sticky"}}>
+        <Flex direction={'column'} className="space-y-5">
           <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
             Filter
           </h3>
@@ -90,28 +91,29 @@ const Search = () => {
             selectedPrice={selectedPrice}
             onChange={(value?: number) => setSelectedPrice(value)}
           />
-        </div>
-      </div>
+        </Flex>
+      </Box>
       <div className="flex flex-col gap-5">
         <div className="flex justify-between items-center">
           <span className="text-xl font-bold">
             {hotelData?.pagination.total} Hotels found
             {search.destination ? ` in ${search.destination}` : ""}
           </span>
-          <select
-            value={sortOption}
-            onChange={(event) => setSortOption(event.target.value)}
-            className="p-2 border rounded-md"
-          >
-            <option value="">Sort By</option>
-            <option value="starRating">Star Rating</option>
-            <option value="pricePerNightAsc">
-              Price Per Night (low to high)
-            </option>
-            <option value="pricePerNightDesc">
-              Price Per Night (high to low)
-            </option>
-          </select>
+          <Select.Root value={sortOption} onValueChange={(value) => setSortOption(value)} size='3'>
+            <Select.Trigger />
+            <Select.Content>
+              <Select.Group>
+              <Select.Item value=" ">Sort By</Select.Item>
+              <Select.Item value="starRating">Star Rating</Select.Item>
+              <Select.Item value="pricePerNightAsc">
+                Price Per Night (low to high)
+              </Select.Item>
+              <Select.Item value="pricePerNightDesc">
+                Price Per Night (high to low)
+              </Select.Item>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
         </div>
         {hotelData?.data.map((hotel) => (
           <SearchResultsCard hotel={hotel} />

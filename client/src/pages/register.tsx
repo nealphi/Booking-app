@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@radix-ui/themes";
 
 export type RegisterFormData = {
   firstName: string;
@@ -39,7 +40,7 @@ const  Register = () => {
   });
 
   return (
-    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+      <form className="flex flex-col gap-5 h-fit" onSubmit={onSubmit}>
       <h2 className="text-3xl font-bold">Create an Account</h2>
       <div className="flex flex-col md:flex-row gap-5">
         <label className="text-gray-700 text-sm font-bold flex-1">
@@ -131,14 +132,14 @@ const  Register = () => {
         )}
       </label>
       <span>
-        <button
+    
+        <Button
           type="submit"
-          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl "
-        >
-          Create Account
-        </button>
+          size={'3'}>
+           Create Account
+        </Button>
       </span>
-    </form>
+    </form>    
   );
 };
 

@@ -1,3 +1,5 @@
+import { Button } from "@radix-ui/themes";
+
 export type Props = {
   page: number;
   pages: number;
@@ -11,10 +13,10 @@ const Pagination = ({ page, pages, onPageChange }: Props) => {
   }
   return (
     <div className="flex justify-center">
-      <ul className="flex border border-slate-300">
+      <ul className="flex">
         {pageNumbers.map((number) => (
-          <li className={`px-2 py-1 ${page === number ? "bg-gray-200" : ""}`}>
-           <button onClick={() => onPageChange(number)}> {number}</button>
+          <li className={`p-2 ${page === number ? "bg-gray-200" : ""} rounded`}>
+           <Button onClick={() => onPageChange(number)}> {number}</Button>
           </li>
         ))}
       </ul>

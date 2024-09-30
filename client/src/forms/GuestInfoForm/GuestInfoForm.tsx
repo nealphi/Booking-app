@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSearchContext } from "../../contexts/SearchContext";
 import { useAppContext } from "../../contexts/AppContext";
 import { useLocation, useNavigate } from "react-router";
+import { Button } from "@radix-ui/themes";
 
 type Props = {
   hotelId: string;
@@ -65,9 +66,13 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   };
 
   return (
-    <div className="flex flex-col p-4 bg-blue-200 gap-4">
-      <h3 className="text-md font-bold">CAD${pricePerNight}</h3>
-      <form onSubmit={isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSingInClick)}>
+    <div className="flex flex-col p-4 bg-blue-950 gap-4">
+      <h3 className="text-md font-bold text-white">CAD${pricePerNight}</h3>
+      <form
+        onSubmit={
+          isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSingInClick)
+        }
+      >
         <div className="grid grid-cols-1 gap-4 items-center">
           <div>
             <DatePicker
@@ -138,17 +143,9 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
           </div>
 
           {isLoggedIn ? (
-            <button
-              className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl"
-            >
-              Book Now
-            </button>
+            <Button>Book Now</Button>
           ) : (
-            <button
-              className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl"
-            >
-              Sign in to book
-            </button>
+            <Button>Sign in to book</Button>
           )}
         </div>
       </form>

@@ -19,7 +19,7 @@ const Detail = () => {
   }
   
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 m-5">
       <div>
         <span className="flex">
           {Array.from({ length: hotel.starRating }).map(() => (
@@ -49,7 +49,7 @@ const Detail = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 text-justify">
         <div className="whitespace-pre-line">{hotel.description}</div>
         <div className="h-fit">
           <GuestInfoForm

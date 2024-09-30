@@ -11,6 +11,7 @@ import Detail from "./pages/Detail";
 import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
+import "./index.css";
 
 function App() {
   const { isLoggedIn } = useAppContext();

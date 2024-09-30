@@ -1,8 +1,9 @@
 import * as apiClient from "../api-client";
 import { useMutation, useQueryClient } from "react-query";
 import { useAppContext } from "../contexts/AppContext";
+import { Button } from "@radix-ui/themes"; // Import Radix UI Button
 
-const SignOutButton = () => {
+const SignOutButton: React.FC = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
 
@@ -19,13 +20,20 @@ const SignOutButton = () => {
   const handleClick = () => {
     mutation.mutate();
   };
+
   return (
-    <button
+    <Button
       onClick={handleClick}
-      className="flex items-center text-blue-600 px-3 bg-white font-bold hover:bg-gray-100 transition-all rounded"
+      variant="solid"
+      size={{
+        initial: "1",
+        xs: "2",
+        sm: "3",
+      }}
+      style={{ fontWeight: "bold" }}
     >
       Sign out
-    </button>
+    </Button>
   );
 };
 

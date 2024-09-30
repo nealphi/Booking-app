@@ -1,33 +1,84 @@
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignOutButton";
+import { Flex, Text, Button } from "@radix-ui/themes";
 
-const Header = () => {
+const Header: React.FC = () => {
   const { isLoggedIn } = useAppContext();
+
   return (
-    <div className="bg-blue-800 py-6">
-      <div className="container mx-auto flex justify-between">
-        <span className="text-3xl text-white font-bold tracking-tight">
-          <Link to="/">MernHolidays.com</Link>
-        </span>
-        <span className="flex space-x-2">
-          {isLoggedIn ? (
-            <>
-              <Link className="flex items-center text-white px-3 font-bold hover:bg-blue-600" to="/my-bookings">My Bookings</Link>
-              <Link className="flex items-center text-white px-3 font-bold hover:bg-blue-600" to="/my-hotels">My Hotels</Link>
-             <SignOutButton/>
-            </>
-          ) : (
-            <Link
-              to="/sign-in"
-              className="flex items-center text-blue-600 px-3 bg-white font-bold hover:bg-gray-100 transition-all rounded"
+    <Flex
+      align={"center"}
+      justify={"between"}
+      minHeight={{initial:"5vh", md:'10vh'}}
+      mx={{ initial: "3", xs: "5" }}
+    >
+      <Text
+        size={{
+          initial: "3",
+          xs: "5",
+          md: "7",
+        }}
+        weight={"bold"}
+        align={"center"}
+        style={{ letterSpacing: "tight" }}
+      >
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "var(--accent-10)" }}
+        >
+          StayEscape.com
+        </Link>
+      </Text>
+
+      <Flex align={"center"} justify={"between"} gap="2">
+        {isLoggedIn ? (
+          <>
+            <Link to="/my-bookings">
+              <Button
+                size={{
+                  initial: "1",
+                  xs: "2",
+                  sm: "3",
+                }}
+                variant="outline"
+                style={{ fontWeight: "bold" }}
+              >
+                Bookings
+              </Button>
+            </Link>
+            <Link to="/my-hotels">
+              <Button
+                size={{
+                  initial: "1",
+                  xs: "2",
+                  sm: "3",
+                }}
+                variant="outline"
+                style={{ fontWeight: "bold" }}
+              >
+                Hotels
+              </Button>
+            </Link>
+            <SignOutButton />
+          </>
+        ) : (
+          <Link to="/sign-in">
+            <Button
+              variant="solid"
+              size={{
+                initial: "1",
+                xs: "2",
+                sm: "3",
+              }}
+              style={{ fontWeight: "bold" }}
             >
               Sign in
-            </Link>
-          )}
-        </span>
-      </div>
-    </div>
+            </Button>
+          </Link>
+        )}
+      </Flex>
+    </Flex>
   );
 };
 

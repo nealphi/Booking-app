@@ -1,16 +1,51 @@
+import { Flex, Text } from "@radix-ui/themes";
+
 const Footer = () => {
   return (
-    <div className="bg-blue-800 py-10">
-      <div className="container mx-auto flex justify-between items-center">
-        <span className="text-3xl text-white font-bold tracking-tight">
-          MernHolidays.com
-        </span>
-        <span className="text-white font-bold tracking-tight flex gap-4">
-            <p className="cursor-pointer">Privacy Policy</p>
-            <p className="cursor-pointer">Terms of Service</p>
-        </span>
-      </div>
-    </div>
+    <Flex
+      justify={"between"}
+      align={"center"}
+      px={{
+        initial: "2",
+        md: "9",
+      }}
+      py={"5"}
+      className="bg-teal-600 text-center text-white"
+      minHeight={'10vh'}
+    >
+      <Text
+        weight={"bold"}
+        size={{
+          initial: "4",
+          xs: "5",
+          md: "7",
+        }}
+      >
+        StayEscape.com
+      </Text>
+      <Flex gap={'3'} align={'center'}>
+        <Text
+          weight={"bold"}
+          size={{
+            initial: "1",
+            xs: "2",
+            sm: "3",
+          }}
+        >
+          Privacy Policy
+        </Text>
+        <Text
+          weight={"bold"}
+          size={{
+            initial: "1",
+            xs: "2",
+            sm: "3",
+          }}
+        >
+          Terms of Service
+        </Text>
+      </Flex>
+    </Flex>
   );
 };
 

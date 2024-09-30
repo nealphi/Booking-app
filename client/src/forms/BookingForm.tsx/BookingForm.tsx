@@ -8,6 +8,7 @@ import { useMutation } from "react-query";
 import * as apiClient from "../../api-client";
 import { useAppContext } from "../../contexts/AppContext";
 import { PaymentIntentResponse, UserType } from "../../../../server/src/shared/types";
+import { Button } from "@radix-ui/themes";
 
 type Props = {
   currentUser: UserType;
@@ -79,7 +80,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       return;
     }
     if (result.paymentIntent?.status === "succeeded") {
-      console.log("booked")
+      console.log(formData)
       bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
     } 
   };
@@ -87,7 +88,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 p-5"
+      className="grid grid-cols-1 gap-5 mx-2 rounded-lg border border-slate-300 p-5"
     >
       <span className="text-3xl font-bold">Confirm Your Details</span>
       <div className="grid grid-cols-2 gap-6">
@@ -126,7 +127,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       <div className="space-y-2">
         <h2 className="text-xl font-semibold">Your Price Summary</h2>
 
-        <div className="bg-blue-200 p-4 rounded-md">
+        <div className="bg-blue-100 p-4 rounded-md">
           <div className="font-semibold text-lg">
             Total Cost: CAD{paymentIntent.totalCost.toFixed(2)}
           </div>
@@ -143,13 +144,12 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       </div>
 
       <div className="flex justify-end">
-        <button
+        <Button
           disabled={isLoading}
           type="submit"
-          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-md disabled:bg-gray-500"
         >
           {isLoading ? "Saving..." : "Confirm Booking"}
-        </button>
+        </Button>
       </div>
     </form>
   );

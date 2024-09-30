@@ -4,6 +4,7 @@ import { MdTravelExplore } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router";
+import { Button, Flex } from "@radix-ui/themes";
 
 const SearchBar = () => {
   const search = useSearchContext();
@@ -33,19 +34,19 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
+      className="m-5 p-5 min-h-10 bg-blue-950 rounded shadow-md grid  grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 items-center gap-4"
     >
-      <div className="flex flex-row items-center flex-1 bg-white p-2">
+      <Flex align={'center'} className="bg-white p-2 rounded" >
         <MdTravelExplore size={25} className="mr-2" />
         <input
-          placeholder="Where are you going?"
+          placeholder="Where?"
           className="text-md w-full focus:outline-none"
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
         />
-      </div>
+      </Flex>
 
-      <div className="flex bg-white px-2 py-1 gap-2">
+      <Flex className=" bg-white px-2 py-1 gap-2 rounded">
         <label className="items-center flex">
           Adults:
           <input
@@ -57,6 +58,8 @@ const SearchBar = () => {
             onChange={(event) => setAdultCount(parseInt(event.target.value))}
           />
         </label>
+        </Flex>
+         <Flex className=" bg-white px-2 py-1 gap-2 rounded">
         <label className="items-center flex">
           Children:
           <input
@@ -68,9 +71,9 @@ const SearchBar = () => {
             onChange={(event) => setChildCount(parseInt(event.target.value))}
           />
         </label>
-      </div>
+      </Flex>
 
-      <div>
+      <Flex >
         <DatePicker
           selected={checkIn}
           onChange={(date) => setCheckIn(date as Date)}
@@ -80,11 +83,11 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText="Check-in Date"
-          className="min-w-full bg-white p-2 focus:outline-none"
+          className="w-full bg-white p-2 focus:outline-none rounded"
           wrapperClassName="min-w-full"
         />
-      </div>
-      <div>
+      </Flex>
+      <Flex>
         <DatePicker
           selected={checkOut}
           onChange={(date) => setCheckOut(date as Date)}
@@ -94,19 +97,19 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText="Check-out Date"
-          className="min-w-full bg-white p-2 focus:outline-none"
+          className="w-full bg-white p-2 focus:outline-none rounded"
           wrapperClassName="min-w-full"
         />
-      </div>
+      </Flex>
 
-      <div className="flex gap-1">
-        <button className="w-2/3 bg-blue-600 text-white h-full p-2 font-bold text-xl hover:bg-blue-500">
+      <Flex justify={'end'} gap={'3'} >
+        <Button size={'3'} >
           Search
-        </button>
-        <button className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">
+        </Button>
+        <Button size={'3'} className=" !bg-red-600 hover:!bg-red-700">
           Clear
-        </button>
-      </div>
+        </Button>
+      </Flex>
     </form>
   );
 };

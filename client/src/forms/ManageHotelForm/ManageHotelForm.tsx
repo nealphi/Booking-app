@@ -6,6 +6,7 @@ import GuestsSection from "./GuestsSection";
 import ImagesSection from "./ImagesSection";
 import { HotelType } from "../../../../server/src/shared/types";
 import { useEffect } from "react";
+import { Button } from "@radix-ui/themes";
 
 export type HotelFormData = {
   name: string;
@@ -70,20 +71,26 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
 
   return (
     <FormProvider {...formMethods}>
-      <form className="flex flex-col gap-10" onSubmit={onSubmit}>
+      <form className="flex flex-col gap-10 m-10 max-w-3xl" onSubmit={onSubmit}>
         <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
         <GuestsSection />
         <ImagesSection />
         <span className="flex justify-end">
-          <button
+          <Button
             disabled={isLoading}
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
+            variant="solid"
+            size={{
+              initial: "1",
+              xs: "2",
+              sm: "3",
+            }}
+            style={{ fontWeight: "bold" }}
           >
             {isLoading ? "Saving..." : "Save"}
-          </button>
+          </Button>
         </span>
       </form>
     </FormProvider>

@@ -2,6 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppContextProvider } from "./contexts/AppContext.tsx";
 import { SearchContextProvider } from "./contexts/SearchContext.tsx";
@@ -19,7 +21,9 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
         <SearchContextProvider>
-          <App />
+          <Theme accentColor="teal">
+            <App />
+          </Theme>
         </SearchContextProvider>
       </AppContextProvider>
     </QueryClientProvider>
