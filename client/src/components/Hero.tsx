@@ -19,7 +19,7 @@ const Hero = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      minHeight= {{ initial: "40vh", sm: "65vh", lg:"75vh" }}
+      minHeight= {{ initial: "40vh", sm: "60vh", lg:"75vh" }}
 
     >
       <Flex direction={"column"} gap={"2"} align={"center"} justify={"center"}>

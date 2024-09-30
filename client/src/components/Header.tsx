@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <Flex
       align={"center"}
       justify={"between"}
-      minHeight={{initial:"5vh", md:'10vh'}}
+      minHeight={'10vh'}
       mx={{ initial: "3", xs: "5" }}
     >
       <Text
